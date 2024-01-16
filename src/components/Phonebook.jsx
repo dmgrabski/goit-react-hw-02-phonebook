@@ -1,22 +1,24 @@
-import React from "react";
-import PropTypes from 'prop-types';
+import React, { useState } from "react";
+import Section from "./Section";
+import ContactForm from "./ContactForm";
+import Contacts from "./ContactList";
+import Filter from "./Filter";
 
-const Filter = ({ filter, setFilter }) => {
-  console.log(filter)
+const Phonebook = ({filter,filteredContacts, onFilterChange,onSubmit}) => {
+ 
 
+ 
   return (
-    <input
-      type="text"
-      id="filter"
-      name="filter"
-      value={filter}
-      onChange={setFilter}
-    />
+    <>
+      <Section title="Phonebook">
+        <ContactForm onSubmit={onSubmit} />
+      </Section>
+      <Section title="Contacts">
+        <Filter filter={filter} setFilter={onFilterChange} />
+        <Contacts contacts={filteredContacts} />
+      </Section>
+    </>
   );
 };
 
-export default Filter;
-
-Filter.propTypes ={
-  filter: PropTypes.string
-}
+export default Phonebook;
