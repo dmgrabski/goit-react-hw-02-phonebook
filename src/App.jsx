@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import "./index.css";
 import Phonebook from "./components/Phonebook";
 
@@ -28,6 +28,12 @@ const App = () => {
     setFilter(e.target.value);
   };
 
+  const handleDelete = (id) => {
+    setContacts((prevContacts) =>
+      prevContacts.filter((contact) => contact.id !== id)
+    );
+  };
+
   const filteredContacts = contacts.filter((contact) =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
@@ -40,6 +46,15 @@ const App = () => {
         filter={filter}
         onFilterChange={handleFilter}
         onSubmit={handleSubmit} />
+
+      <ul>
+        {filteredContacts.map((contact) => (
+          <li key={contact.id}>
+            {contact.name}: {contact.number}
+            <button onClick={() => handleDelete(contact.id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
     </>
   );
 };
