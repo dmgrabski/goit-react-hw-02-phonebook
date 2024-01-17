@@ -45,16 +45,8 @@ const App = () => {
         filteredContacts={filteredContacts}
         filter={filter}
         onFilterChange={handleFilter}
-        onSubmit={handleSubmit} />
-
-      <ul>
-        {filteredContacts.map((contact) => (
-          <li key={contact.id}>
-            {contact.name}: {contact.number}
-            <button onClick={() => handleDelete(contact.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+        onSubmit={handleSubmit}
+        onDelete={handleDelete} />
     </>
   );
 };
